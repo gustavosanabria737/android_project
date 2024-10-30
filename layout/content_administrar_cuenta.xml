@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:id="@+id/layout_for_snack"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.eventoscercanos.osmdroid.cuenta.ActivityCuenta"
+    tools:showIn="@layout/app_bar_administrar_cuenta">
+
+
+    <org.osmdroid.views.MapView
+        android:layout_width="match_parent"
+        android:id="@+id/map_cuenta"
+        android:layout_height="match_parent">
+    </org.osmdroid.views.MapView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frame_cuenta"></FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_markers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/redgray2"
+        android:paddingTop="1dp"
+        android:padding="1dp"
+        />
+</RelativeLayout>

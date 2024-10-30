@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/coordinator_pagina"
+    android:fitsSystemWindows="true"
+    android:paddingBottom="5dp"
+    tools:context="com.eventoscercanos.osmdroid.ActivityPagina">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_pagina"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:contentScrim="@color/primaryColor"
+            app:expandedTitleMarginEnd="16dp"
+            app:expandedTitleMarginStart="16dp"
+            app:expandedTitleTextAppearance="@android:color/transparent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+-
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/netImgView_port"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax" /><!--android:src="@drawable/basilica"
+-->
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_pagina"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="parallax"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_pagina" />
+
+<!--    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_pagina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawaicono64cono"
+        app:layout_anchor="@id/app_bar_pagina"
+        app:layout_anchorGravity="bottom|end" />-->
+
+
+    <Button
+        android:id="@+id/boton_submit_pagina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="4dp"
+        android:text="Fin"
+        android:visibility="gone"
+        />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

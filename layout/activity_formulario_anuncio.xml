@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="700dp"
+android:orientation="vertical"
+app:layout_behavior="@string/appbar_scrolling_view_behavior"
+tools:context="com.eventoscercanos.osmdroid.nuevo.NuevoEvento"
+tools:showIn="@layout/activity_formulario_anuncio"
+android:weightSum="1"
+android:theme="@style/AppTheme"
+android:alpha="255">
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        style="@style/Widget.CardContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edtx_nom_anuncio"
+                android:maxLength="70"
+                android:maxLines="2"
+                android:hint="Nombre del Anuncio"
+                android:inputType="textCapWords|textMultiLine" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edtx_descrip_anuncio"
+                android:hint="Breve descripcion"
+                android:minLines="2"
+                android:maxLines="3"
+                android:inputType="textCapWords|textMultiLine"
+                android:maxLength="100"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edtx_info_anuncio"
+                android:hint="Información detallada"
+                android:maxLength="1000"
+                android:inputType="textCapSentences|textMultiLine"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        style="@style/Widget.CardContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Fijar fecha"
+            android:padding="10dp"
+
+            />
+        <Button
+            android:id="@+id/btn_fecha_anuncio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:focusable="true"
+            android:onClick="showDatePickerDialog"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Fijar hora"
+            android:padding="10dp"
+            />
+
+        <Button
+            android:id="@+id/btn_hora_anuncio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:focusable="true"
+            android:textAllCaps="false"
+            android:text="00:00 hs"
+            android:onClick="showTimePickerDialog"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        style="@style/Widget.CardContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/title_selec_categoria"
+            android:id="@+id/textView_categorias_anuncio"
+            android:paddingBottom="7dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Debe elegir al menos una categoria"
+            android:id="@+id/event_error_anuncio"
+            android:focusable="true"
+            android:padding="3dp"
+            android:visibility="gone"
+            android:textColor="@color/red"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#95b4df"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spnr_cat_anuncio1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                />
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"/>
+            <Spinner
+                android:id="@+id/spnr_cat_anuncio2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:text="Si ninguna categoría corresponde, puedes crear una nueva haciendo click en el siguiente botón:"/>
+
+        <Button
+            android:id="@+id/btn_new_cat_anuncio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Crear Categoría"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        style="@style/Widget.CardContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/titulo_telefono"
+            android:id="@+id/tv_tel_anuncio"
+            android:paddingTop="15dp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/anuncio_telef1"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/anuncio_telef2"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/titulo_cuentas"
+            android:id="@+id/tv_anuncio_cta"
+            android:paddingTop="15dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/anuncio_cuenta1"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/anuncio_cuenta2"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/anuncio_cuenta3"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Ciudad"
+            android:paddingTop="15dp"
+            android:paddingBottom="3dp"
+            android:paddingLeft="7dp"
+            />
+        <EditText
+            android:id="@+id/edtx_ciudad_anuncio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords|textPersonName"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/event_btn_submit"
+    android:text="Aceptar"
+    android:padding="5dp"
+    android:layout_margin="5dp"
+    android:layout_marginRight="?android:attr/listPreferredItemPaddingRight"/>
+
+
+</LinearLayout>
+    </ScrollView>
+

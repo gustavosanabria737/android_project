@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="preferExternal">
+
+    <!-- Autenticación -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" /> <!-- Sincronización -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icono64"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:targetApi="n">
+        <!-- todo:  android:value="ca-app-pub-2632965436000859~4640252810"    Just make sure you replace it with your own ad unit ID before publishing your app.   -->
+
+        <activity
+            android:name=".monetizacion.viewmodel.ActivityPlans"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_plans"
+            android:theme="@style/AppTheme.NoActionBar.Fullscreen" />
+        <activity
+            android:name=".monetizacion.FormularioAnuncio"
+            android:exported="false" />
+        <activity
+            android:name=".nuevo.TabbedActivity"
+            android:exported="false"
+            android:label="@string/title_activity_tabbed"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".monetizacion.CheckoutActivity"
+            android:exported="false"
+            android:label="@string/title_activity_checkout"
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- This element is required to enable Google Pay in your app. -->
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchableActivity" />
+        </activity>
+        <activity
+            android:name=".syncSQLiteMySQL.ui.ActivityNuevaCategoria"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/ActivityNuevaCategoriaLabel"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityPagina"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- android:windowSoftInputMode="stateHidden"-Evita el despliegue del teclado -->
+        <activity
+            android:name=".syncSQLiteMySQL.ui.InsertActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".syncSQLiteMySQL.ui.ActivityNuevaCategoria"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eventoscercanos.osmdroid.syncSQLiteMySQL.ui.ActivityNuevaCategoria" />
+        </activity> <!-- PROVIDER -->
+        <provider
+            android:name=".syncSQLiteMySQL.provider.ContentProviderCategorias"
+            android:authorities="@string/provider_authority"
+            android:exported="false"
+            android:syncable="true" /> <!-- SERVICIO DE AUTENTICACIÓN -->
+        <service
+            android:name=".syncSQLiteMySQL.sync.AuthenticationService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service> <!-- SERVICIO DE SINCRONIZACIÓN -->
+        <service
+            android:name=".syncSQLiteMySQL.sync.SyncService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/sync_adapter" />
+        </service>
+
+        <activity
+            android:name=".nuevo.ActivityFotos"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activityFotos"
+            android:parentActivityName=".nuevo.ActivityPortada"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".nuevo.ImagenDetalleActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppThemeDark.FullScreen" />
+        <activity
+            android:name=".nuevo.ActivityGaleriaEditable"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".nuevo.ActivityPortada"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".nuevo.ActivityPortada"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".nuevo.Activity_iconos"
+            android:configChanges="screenSize|orientation"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".nuevo.NuevoEvento"
+            android:configChanges="screenSize|orientation"
+            android:label="@string/title_activity_nuevo_evento"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+
+        <provider
+            android:name=".MySuggestionProvider"
+            android:authorities="com.eventoscercanos.osmdroid.MySuggestionProvider" />
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".cuenta.ActivityCuenta"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_administrar_cuenta"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/title_activity_register" />
+        <activity android:name=".cuenta.Informacion" />
+        <activity
+            android:name=".cuenta.Sugerencias"
+            android:label="Sugerencias" />
+        <activity
+            android:name=".nuevo.ActivityGaleria"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".cuenta.MoverActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_mover"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".nuevo.ActivityPaginaEditable"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".cuenta.MarkerActivity"
+            android:label="@string/title_activity_marker"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Acerca" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2632965436000859~4081741815"/> <!-- This ID is only for testing ads -->
+
+    </application>
+
+</manifest>
